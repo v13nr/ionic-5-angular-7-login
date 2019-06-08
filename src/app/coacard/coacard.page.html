@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar *ngFor="let coa of coas">
+    <ion-title>{{coa.nama_coa}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card text-center   *ngFor="let coa of coas">
+    <div align="center">
+        <ion-img src="/assets/images/avatar-poe.png"  style=" text-align: center; align-items: center; width:50%;" ></ion-img>  
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>{{coa.kode_coa}}</ion-card-subtitle>
+      <ion-card-title>{{coa.nama_coa}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        {{coa.description}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

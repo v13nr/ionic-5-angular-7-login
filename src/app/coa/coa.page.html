@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chart of Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- List of Text Items -->
+  <ion-list>
+    <ion-list-header>
+      INDUK COA
+    </ion-list-header>
+
+    <ion-item  *ngFor="let coa of coas">
+      <ion-avatar slot="start">
+        <ion-img src="/assets/images/avatar-poe.png"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2><a  routerLink="/tabs/coacard/{{coa.kode_coa}}" >{{coa.nama_coa}}</a></h2>
+        <h3>{{coa.kode_coa}}</h3>
+        <p>{{coa.description}}</p>
+      </ion-label>
+    </ion-item>
+
+
+  </ion-list>
+
+
+</ion-content>
