@@ -89,6 +89,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'barang',
+        children: [
+          {
+            path: '',
+            loadChildren: '../barang/barang.module#BarangPageModule'
+          }
+        ]
+      },
+      {
         path: 'listmenu',
         children: [
           {
