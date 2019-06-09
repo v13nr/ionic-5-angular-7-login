@@ -26,7 +26,7 @@ export class RegisterserviceService {
    const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/x-www-form-urlencoded',
-      'X-Api-Key': this.config.API,
+      'X-Api-Key': this.config.API.toString(),
       'Accept': 'application/json, */*'
     })};
 

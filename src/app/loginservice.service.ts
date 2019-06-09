@@ -11,7 +11,7 @@ export class LoginserviceService {
 
   constructor(
     private http:HttpClient,
-    private config:ConfService
+    public config:ConfService
   ) { }
 
   doLogin(username:string, password:string){
@@ -24,7 +24,7 @@ export class LoginserviceService {
    const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/x-www-form-urlencoded',
-      'X-Api-Key': this.config.API
+      'X-Api-Key': this.config.API.toString() 
     })};
 
     

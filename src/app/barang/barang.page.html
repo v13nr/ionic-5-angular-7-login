@@ -5,5 +5,9 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list  *ngFor="let barang of databarang">
+    <ion-item>
+      <ion-label><a href=""   routerLink="/tabs/barang" >{{barang.nama_barang}}</a></ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
