@@ -19,12 +19,13 @@ import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     HttpClientModule, HttpModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    
   
   ],
   providers: [

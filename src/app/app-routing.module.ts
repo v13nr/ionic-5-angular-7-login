@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'coacard', loadChildren: './coacard/coacard.module#CoacardPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
-  { path: 'listmenu', loadChildren: './listmenu/listmenu.module#ListmenuPageModule' }
+  { path: 'listmenu', loadChildren: './listmenu/listmenu.module#ListmenuPageModule' },
+  { path: 'barang', loadChildren: './barang/barang.module#BarangPageModule' }
 ];
 @NgModule({
   imports: [
