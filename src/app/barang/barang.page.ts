@@ -15,6 +15,7 @@ export class BarangPage implements OnInit {
   arrBarang: string [];
   tokenz: string
   databarang: string
+  id_user:string
 
   constructor(
     private httpService: HttpClient,
@@ -24,12 +25,26 @@ export class BarangPage implements OnInit {
     private storage: Storage
 
     ) { 
+      this.showProduk()
+    }
 
+  ngOnInit() {
+
+
+
+  
+  }
+
+  showProduk(){
       
     this.tokenz = this.storage.get('token_user').toString();
     this.storage.get('token_user').then((val) => {
       console.log('Token User adalah = ', val)
-      this.tokenz = val
+      var str = val;
+      var res = str.split("&&&&&");
+      this.tokenz = res[0]
+      this.id_user = res[1]
+
 
       const httpOptions = {
         headers: new HttpHeaders({
@@ -39,10 +54,10 @@ export class BarangPage implements OnInit {
           'Accept': 'application/json, */*'
         })};
     
-        this.httpService.get(this.config.ProdukAll_URL+'?X-Api-Key='+this.config.API,httpOptions).subscribe(
+        this.httpService.get(this.config.ProdukAll_URL+'?id='+this.id_user,httpOptions).subscribe(
           data => {
             this.arrBarang = data as string [];	 // FILL THE ARRAY WITH DATA.
-             console.log(this.arrBarang["data"]["coamu_produk"][1]["id_produk"]);
+             //console.log(this.arrBarang["data"]["coamu_produk"][1]["id_produk"]);
              this.databarang = this.arrBarang["data"]["coamu_produk"]
           },
           (err: HttpErrorResponse) => {
@@ -52,17 +67,6 @@ export class BarangPage implements OnInit {
 
     });
 
-
-
-
-
-    }
-
-  ngOnInit() {
-
-
-
-  
   }
 
 }

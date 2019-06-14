@@ -9,9 +9,15 @@ const routes: Routes = [
   { path: 'coa', loadChildren: './coa/coa.module#CoaPageModule' },
   { path: 'coacard', loadChildren: './coacard/coacard.module#CoacardPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'listmenu', loadChildren: './listmenu/listmenu.module#ListmenuPageModule' },
-  { path: 'barang', loadChildren: './barang/barang.module#BarangPageModule' }
+  { path: 'barang', loadChildren: './barang/barang.module#BarangPageModule' },
+  { path: 'profileedit', loadChildren: './profileedit/profileedit.module#ProfileeditPageModule' },
+  { path: 'profile-edit', loadChildren: './profile-edit/profile-edit.module#ProfileEditPageModule' },
+  
+  { path: '**', loadChildren: './errpages/errpages.module#ErrpagesPageModule' }
+
 ];
 @NgModule({
   imports: [

@@ -98,6 +98,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'editprofile',
+        children: [
+          {
+            path: '',
+            loadChildren: '../profileedit/profileedit.module#ProfileeditPageModule'
+          }
+        ]
+      },
+      {
         path: 'listmenu',
         children: [
           {

@@ -6,6 +6,8 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 import {LoadingController , NavController} from '@ionic/angular';
+import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import { V13serviceService } from '../service/v13service.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,7 @@ export class LoginPage implements OnInit {
   email:string
   imgToast: HTMLElement;
   public loading = LoadingController;
+  public invalidLogin: boolean =true
 
   constructor(
     private loginService:LoginserviceService,
@@ -27,27 +30,33 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private router: Router,
     public nav: NavController,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public auth: HardcodedAuthenticationService,
+    private hardcodedauth: V13serviceService
   ) { 
     this.user = new User(this.id,'','');
     
   }
 
   ngOnInit() {
+    
+  }
+
   
+  handleLogin() {
+    if(this.hardcodedauth.authenticate(this.user.username, this.user.password)) {
+      this.invalidLogin = false
+      this.login()
+      sessionStorage.setItem('authenticateUser', this.user.username)
+    } else {
+      
+      sessionStorage.setItem('authenticateUser', this.user.password)
+      this.invalidLogin = true
+    }
   }
 
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: 'Please Wait',
-      duration: 2000
-    });
-    await loading.present();
 
-    const { role, data } = await loading.onDidDismiss();
 
-    console.log('Loading dismissed!');
-  }
 
   async showToastOnImage() {
     const toast = await this.toastController.create({
@@ -109,26 +118,31 @@ export class LoginPage implements OnInit {
 
 
   login(){
+
+    
     this.presentLoading();
+    this
     this.loginService.doLogin(this.user.username,this.user.password)
           .subscribe (
             response => this.handleSuccessfullResponse(response),
             error => this.handleErrorRest(error),
             () => {
-
-      
+                
             }
             
           )
           
   }
+  presentLoading() {
+    
+  }
 
   handleSuccessfullResponse(response){
-    
+    this.invalidLogin = false 
     this.token = response.token
     this.id = response.id
     this.email = response.email
-    this.storage.set('token_user',response.token)
+    this.storage.set('token_user',response.token+"&&&&&"+response.data["id"])
     this.storage.set('id_user',response.data["id"])
     this.storage.set('email_user',response.data["email"])
     
@@ -137,14 +151,29 @@ export class LoginPage implements OnInit {
     });
     this.storage.get('email_user').then((val) => {
       console.log('Email User adalah = ', val);
+      sessionStorage.setItem('email_user_sesi', val);
+      console.log("sesi email "+val)
     });
 
     this.showToast('bottom', response.message)
     this.router.navigate(['/tabs/listmenu'])
+    this.isUserLoggedIn();
+
+    sessionStorage.setItem('authenticateUser', this.user.username)
+    this.invalidLogin = false
 }
 
+
+isUserLoggedIn() {
+  let user = sessionStorage.getItem('email_user_sesi')
+  return !(user === null)
+}
+
+
 handleErrorRest(error){
+  this.invalidLogin = true
   
+
   this.showToast('bottom', error.message)
 }
 
