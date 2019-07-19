@@ -26,7 +26,16 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'bantuan',
+        path: 'foto',
+        children: [
+          {
+            path: '',
+            loadChildren: '../foto/foto.module#FotoPageModule'
+          }
+        ]
+      },
+      {
+        path: 'coahelp',
         children: [
           {
             path: '',
@@ -49,6 +58,15 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../tabwelcome/tabwelcome.module#TabwelcomePageModule'
+          }
+        ]
+      },
+      {
+        path: 'poshome',
+        children: [
+          {
+            path: '',
+            loadChildren: '../poshome/poshome.module#PoshomePageModule'
           }
         ]
       },
@@ -103,6 +121,15 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../profileedit/profileedit.module#ProfileeditPageModule'
+          }
+        ]
+      },
+      {
+        path: 'bantuan',
+        children: [
+          {
+            path: '',
+            loadChildren: '../laporan/laporan.module#LaporanPageModule'
           }
         ]
       },

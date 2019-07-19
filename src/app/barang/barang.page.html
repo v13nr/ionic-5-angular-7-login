@@ -1,15 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Data Barang</ion-title>
-    <a href="javascript:void(0)" style="text-align: right" (click)="showProduk()"><ion-icon slot="end" color="medium" name="sync"></ion-icon></a>
-    
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
-  <ion-list  *ngFor="let barang of databarang">
+  <ion-button color="secondary" (click)="showProduk()">Load Produk</ion-button>
+
+  <ion-list *ngFor="let barang of databarang">
     <ion-item>
-      <ion-label><a href=""   routerLink="/tabs/barang" >{{barang.nama_barang}}</a></ion-label>
+      <ion-label><a href="" routerLink="/tabs/barang">{{barang.nama_barang}}</a></ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

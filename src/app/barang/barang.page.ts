@@ -14,7 +14,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class BarangPage implements OnInit {
   arrBarang: string [];
   tokenz: string
-  databarang: string
+  databarang: string []
   id_user:string
 
   constructor(
@@ -25,15 +25,16 @@ export class BarangPage implements OnInit {
     private storage: Storage
 
     ) { 
-      this.showProduk()
+      
+
+      this.databarang=[]
+      
     }
 
   ngOnInit() {
-
-
-
-  
   }
+
+ 
 
   showProduk(){
       
@@ -58,6 +59,8 @@ export class BarangPage implements OnInit {
           data => {
             this.arrBarang = data as string [];	 // FILL THE ARRAY WITH DATA.
              //console.log(this.arrBarang["data"]["coamu_produk"][1]["id_produk"]);
+             
+             this.databarang=[]
              this.databarang = this.arrBarang["data"]["coamu_produk"]
           },
           (err: HttpErrorResponse) => {
